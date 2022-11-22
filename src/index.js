@@ -3,7 +3,7 @@ import './style.css';
 
 function component() {
     const element = document.createElement('div');
-    //const body = document.getElementsByTagName('body');
+    //const element = document.getElementsByTagName('main');
     //body.style.backgroundColor = 'blue'
  
    
@@ -12,5 +12,10 @@ function component() {
  
     return element;
   }
-
-  document.body.appendChild(component());
+  function main(){
+    const element = document.createElement('main');
+    element.classList.add('main')
+    return element;
+  }
+  
+  document.body.appendChild(main()).appendChild(component());
