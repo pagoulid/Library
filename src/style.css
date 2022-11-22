@@ -30,3 +30,73 @@ header h1{
     height:90%;
     background-color:var(--clr-dark);
 }
+.button{
+    width:15%;
+    min-width:70px;
+    background-color: var(--clr-blue);
+    border-radius: 5px;
+    text-align: center;
+    padding:1rem;
+    position:relative;
+    top:80%;
+    left:80%;
+}
+
+.data-card{
+    width:30%;
+    min-width:200px;
+    padding:5rem;
+    background-color: white;
+    position:absolute;
+    top:5rem;
+    left:25vw;
+    z-index:2;
+}
+
+.data-card h1{
+    color: var(--clr-blue);
+    margin:auto;
+    margin-top:1rem;
+    text-align:center;
+}
+
+.data-card form{
+    width:80%;
+    margin-top: 2rem;
+}
+
+.data-card input{
+    display:block;
+    width:100%;
+    min-width:200px;
+    height:2rem;
+    margin-top:1rem;
+
+}
+
+.data-card input[type="submit"]{
+    text-align: center;
+    color: whitesmoke;
+    background-color: var(--clr-blue);
+    
+    padding-top:2%;
+    padding-bottom:5%;
+}
+
+
+@media screen and (max-width:500px){
+    .button{
+        left:50%;
+    }
+    .data-card{
+        left:20%;
+        top:15rem;
+        padding:5%;
+    }
+}
+
+@media screen and (max-width:300px){
+    .data-card{
+        left:2%;
+    }
+}
