@@ -42,9 +42,19 @@ main{
     border-radius: 25px;
     text-align: center;
     font-size: var(--fnt-size-icon-md);
-    position:relative;
+    position:fixed;
     top:80%;
     left:80%;
+}
+
+#books-container{
+    display:flex;
+    flex-direction: row;
+
+}
+#books-container ul{
+    background-color: white;
+    padding:2rem;
 }
 
 .data-card{
@@ -136,9 +146,7 @@ main{
 
 
 @media screen and (max-width:500px){
-   #new-book{
-        left:50%;
-    }
+  
     .data-card{
         left:20%;
         top:15rem;
@@ -147,6 +155,9 @@ main{
 }
 
 @media screen and (max-width:300px){
+    #new-book{
+        left:75%;
+    }
     .data-card{
         left:2%;
     }
