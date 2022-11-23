@@ -1,3 +1,3 @@
 TODO
-    Fix positioning
+    Fix positioning on card
     Implement functionality

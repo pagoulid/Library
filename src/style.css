@@ -1,6 +1,10 @@
 :root{
     --clr-blue:#2185d5;
     --clr-dark:#2d4059;
+
+    --fnt-size-icon-md:1rem;
+    --fnt-size-icon-lg:2rem;
+
 }
 *{
     margin:0;
@@ -26,42 +30,89 @@ header h1{
     text-align: center;
     margin:auto;
 }
-.main{
+main{
     height:90%;
     background-color:var(--clr-dark);
 }
-.button{
-    width:15%;
-    min-width:70px;
+#new-book{
+    width:3rem;
+    height:3rem;
     background-color: var(--clr-blue);
-    border-radius: 5px;
+    color: white;
+    border-radius: 25px;
     text-align: center;
-    padding:1rem;
+    font-size: var(--fnt-size-icon-md);
     position:relative;
     top:80%;
     left:80%;
 }
 
 .data-card{
+    
     width:30%;
-    min-width:200px;
-    padding:5rem;
+    min-width:230px;
+    /*padding:5rem;*/
     background-color: white;
     position:absolute;
     top:5rem;
     left:25vw;
     z-index:2;
+    
+}
+.flag{
+    opacity:0;
+}
+.hidden-data-card{
+    animation: 2s transform-opacity2 1 linear;
+    animation-fill-mode: forwards; 
+    
+}
+.visible-data-card{
+    animation: 2s transform-opacity 1 linear;
+    animation-fill-mode: forwards; 
 }
 
-.data-card h1{
-    color: var(--clr-blue);
+@keyframes transform-opacity{
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity:1;
+    }
+}
+
+@keyframes transform-opacity2{
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity:0;
+    }
+}
+.data-card .data-header{
+    display:flex;
+    flex-flow: row;
+    justify-content: center;
+    gap:10%;
+    
     margin:auto;
+}
+.data-header h1{
+    color: var(--clr-blue);
     margin-top:1rem;
     text-align:center;
+}
+.data-header i{
+    float: right;
+    font-size: var(--fnt-size-icon-lg);
+    color:var(--clr-blue)
 }
 
 .data-card form{
     width:80%;
+    padding:1rem;
     margin-top: 2rem;
 }
 
@@ -85,7 +136,7 @@ header h1{
 
 
 @media screen and (max-width:500px){
-    .button{
+   #new-book{
         left:50%;
     }
     .data-card{
