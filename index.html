@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/63759185c4.js" crossorigin="anonymous"></script>
     <title>Virtual Library</title>
 </head>
 <body>
     <header>
         <h1>Virtual Library</h1>
     </header>
-    <!--<main>
-        <p>dummy text</p>
-    </main>-->
-    <section class="data-card">
-        <h1>NEW BOOK</h1>
-        <form action="#">
-            <label for="book-title" >Title:</label>
-            <input type="text" name="book-title" id="book-title"  required>
-            <label for="book-author" >Author:</label>
-            <input type="text" name="book-author" id="book-author"  required>
-            <label for="book-pages" >Pages:</label>
-            <input type="text" name="book-pages" id="book-pages"  required>
-            <input  type="submit" form="form" value="Submit">
+    <main>
+        <section class="data-card flag">
+            <div class="data-header">
+                <h1>NEW BOOK</h1>
+                <i class="fa fa-times close" aria-hidden="true"></i>
+            </div>
             
-        </form>
+            <form action="#">
+                <label for="book-title" >Title:</label>
+                <input type="text" name="book-title" id="book-title"  required>
+                <label for="book-author" >Author:</label>
+                <input type="text" name="book-author" id="book-author"  required>
+                <label for="book-pages" >Pages:</label>
+                <input type="text" name="book-pages" id="book-pages"  required>
+                <input  type="submit" form="form" value="Submit">
+                
+            </form>
+            
+        </section>
+        <button id="new-book"><i class="fa fa-plus" aria-hidden="true"></i></button>
         
-    </section>
+    </main>
+    
     <script src="main.js"></script>
 </body>
 </html>
