@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import {replace,toggle,getVal,clearText} from './functions.js'
+import {get_data_card_nodes,set_data_card_nodes} from './inputCard.js'
 import './style.css';
 
 let myLibrary=[]
@@ -11,24 +12,7 @@ let count=0
 function Book(id,title,author,pages){
   return {id,title,author,pages}
 }
-/*function component() {
-    const element = document.createElement('button');
-    element.classList.add('button');
-    //const element = document.getElementsByTagName('main');
-    //body.style.backgroundColor = 'blue'
- 
-   
-   // Lodash, now imported by this script
-    element.innerHTML = _.join(['NEW BOOK'], ' ');
- 
-    return element;
-  }
-  function main(){
-    const element = document.createElement('main');
-    element.classList.add('main')
-    return element;
-  }*/
-  
+
   const container=document.getElementById('books-container');
   const cardNode=document.querySelector('.data-card');
   const button = document.getElementById('new-book');
@@ -91,20 +75,6 @@ function Book(id,title,author,pages){
       }
     } 
 
-  
-  function get_data_card_nodes(){
-    const titleNode=document.getElementById('book-title');
-    const authorNode=document.getElementById('book-author');
-    const pagesNode=document.getElementById('book-pages');
-    return [titleNode,authorNode,pagesNode]
-  }
-
-  function set_data_card_nodes(nodes,values){
-
-    nodes.forEach((node,index)=>{
-      node.value=values[index]
-    })
-  }
   
 
   function submit_data(){
@@ -224,27 +194,3 @@ function Book(id,title,author,pages){
 
       
 }
-
-  /*function clearText(Nodes){
-    Nodes.forEach(node => {
-      node.value=''
-    });
-  }
-  function replace(classNames){
-    //cardNode.classList.replace('visible-data-card','hidden-data-card');
-    cardNode.classList.replace(classNames.primary,classNames.replacement)
-  }
-  function toggle(classArray){
-    classArray.forEach(className => {
-      cardNode.classList.toggle(className);
-    });
-  }
-  
-  function getVal(str){
-    if(str.includes(":")){
-      str=str.split(":")
-      str=str[1]
-    }
-    
-    return str
-  }*/
