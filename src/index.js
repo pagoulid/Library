@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import {Book} from '../modules/Book.js'
 import './style.css';
 
 let myLibrary=[]
@@ -8,7 +7,9 @@ let updateTarget=''
 let gmsg=''
 let count=0 
 
-
+function Book(id,title,author,pages){
+  return {id,title,author,pages}
+}
 /*function component() {
     const element = document.createElement('button');
     element.classList.add('button');
@@ -246,4 +247,3 @@ let count=0
     
     return str
   }
-  //document.body.appendChild(main()).appendChild(component());
