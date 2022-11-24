@@ -1,3 +1,4 @@
 TODO
     Fix positioning on card
-    Implement functionality
+    Need to organize better code but modules do not work properly!!!
+    
