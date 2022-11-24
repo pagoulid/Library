@@ -46,6 +46,7 @@ function Book(id,title,author,pages){
   function show_data_card(msg,target){ // need target for to get book id for update
     const dup_update_flag = gmsg // Keep old msg , if old msg and new msg are both update then do not do nothing
     gmsg=msg
+    console.log(dup_update_flag)
     const isVisible= cardNode.classList.contains('visible-data-card');
     const isHidden= cardNode.classList.contains('hidden-data-card');
 
@@ -152,9 +153,16 @@ function Book(id,title,author,pages){
     const author=Nodes[1].value;
     const pages= Nodes[2].value;
 
-    listNodes[1].childNodes[0].textContent=title;
-    listNodes[3].childNodes[0].textContent=author;
-    listNodes[5].childNodes[0].textContent=pages;
+    //listNodes[1].childNodes[0].textContent=title;
+    //listNodes[3].childNodes[0].textContent=author;
+    //listNodes[5].childNodes[0].textContent=pages;
+
+    myLibrary[updateTarget-1].title=title
+    myLibrary[updateTarget-1].author=author
+    myLibrary[updateTarget-1].pages=pages
+    console.log(myLibrary)
+    displayToDOM()
+    addUpdateEventListener() // Also update event listeners
 
     clearText(Nodes);
 
@@ -162,11 +170,26 @@ function Book(id,title,author,pages){
 
 
   }
+  function deleteBook(id){
+    deleteBookFromLibrary(id)
+    
+    displayToDOM()
+    addUpdateEventListener()
+    console.log(myLibrary)
+  }
 
   function addBookToLibrary(id,title,author,pages){
     const newBook =Book(id,title,author,pages);
     myLibrary.push(newBook);
     
+  }
+  function deleteBookFromLibrary(id){
+    myLibrary.splice(id-1,1)
+    count=count-1
+
+    for(let i=0;i<=count-1;i++){
+      myLibrary[i].id=i+1
+    }
   }
 
   function displayToDOM(){
@@ -175,6 +198,7 @@ function Book(id,title,author,pages){
       <li><p>Author:${book.author}</p></li>
       <li><p>Pages:${book.pages}</p></li>
       <li><button>Update<button></li>
+      <li><button>Delete<button></li>
       </ul>`).join('')}`
 
   }
@@ -183,9 +207,16 @@ function Book(id,title,author,pages){
     myLibrary.forEach((book)=>{
       const updateButtonNode=document.getElementById(book.id)
       updateButtonNode.addEventListener('click',(e)=>{
-        console.log('update message!:)')
-        
-        show_data_card('update',e.currentTarget.id);
+       const clickedButton= e.target.textContent;
+        if(clickedButton=='Update'){
+          show_data_card('update',e.currentTarget.id);
+        }
+        else{ //delete operation
+          console.log(e.currentTarget.id)
+          deleteBook(e.currentTarget.id)
+
+        }
+          
       })
     })
     
