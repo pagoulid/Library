@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {replace,toggle,getVal,clearText} from './functions.js'
-import {get_data_card_nodes,set_data_card_nodes} from './inputCard.js'
+import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
 import './style.css';
 
 let myLibrary=[]
@@ -53,18 +53,18 @@ function Book(id,title,author,pages){
         }
         
         if(updateCondition){
-          //console.log('CHECK!')
-            const listNodes=document.getElementById(target).childNodes//[text,li,text,...] , text is useless , for line break
+
+           /* const listNodes=document.getElementById(target).childNodes//[text,li,text,...] , text is useless , for line break
             let entryTitle=listNodes[1].childNodes[0].textContent
             let entryAuthor=listNodes[3].childNodes[0].textContent
             let entryPages=listNodes[5].childNodes[0].textContent
             
             entryTitle= getVal(entryTitle)
             entryAuthor= getVal(entryAuthor)
-            entryPages=getVal(entryPages)
-
+            entryPages=getVal(entryPages)*/
+            const entryContent=get_entry_data(target)//[entryTitle,entryAuthor,entryPages]
             const Nodes = get_data_card_nodes()
-            set_data_card_nodes(Nodes,[entryTitle,entryAuthor,entryPages]) // to display entry values on data card inputs
+            set_data_card_nodes(Nodes,entryContent) // to display entry values on data card inputs
             updateTarget=target // store target to global variable to use it when handling update submission
             
 
@@ -89,13 +89,7 @@ function Book(id,title,author,pages){
 
   function addBook(){
 
-    
-    //close_data_card()
     replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
-
-    /*const titleNode=document.getElementById('book-title');
-    const authorNode=document.getElementById('book-author');
-    const pagesNode=document.getElementById('book-pages');*/
     const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode]
 
     const title=Nodes[0].value;
