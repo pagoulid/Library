@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import {replace,toggle,getVal,clearText} from './functions.js'
 import './style.css';
 
 let myLibrary=[]
@@ -59,12 +60,12 @@ function Book(id,title,author,pages){
     if(!(openCondition || closeCondition)){
 
       if(flagCondition){
-        replace({primary:'flag',replacement:'visible-data-card'})
+        replace(cardNode,{primary:'flag',replacement:'visible-data-card'})
       }
       else{
         
         if(updateDupCondition){// In case new/old msg is update
-          toggle(['hidden-data-card','visible-data-card'])
+          toggle(cardNode,['hidden-data-card','visible-data-card'])
         }
         
         if(updateCondition){
@@ -120,7 +121,7 @@ function Book(id,title,author,pages){
 
     
     //close_data_card()
-    replace({primary:'visible-data-card',replacement:'hidden-data-card'})
+    replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
 
     /*const titleNode=document.getElementById('book-title');
     const authorNode=document.getElementById('book-author');
@@ -142,7 +143,7 @@ function Book(id,title,author,pages){
   
   function updateBook(){
     
-    replace({primary:'visible-data-card',replacement:'hidden-data-card'})
+    replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
     //console.log('OLA POPA')
       const listNodes=document.getElementById(updateTarget).childNodes//[text,li,text,...] , text is useless , for line break
       
@@ -224,7 +225,7 @@ function Book(id,title,author,pages){
       
 }
 
-  function clearText(Nodes){
+  /*function clearText(Nodes){
     Nodes.forEach(node => {
       node.value=''
     });
@@ -246,4 +247,4 @@ function Book(id,title,author,pages){
     }
     
     return str
-  }
+  }*/
