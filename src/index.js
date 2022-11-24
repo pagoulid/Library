@@ -2,7 +2,8 @@ import _ from 'lodash';
 import './style.css';
 
 let myLibrary=[]
-let update=[]
+
+let updateTarget=''
 let gmsg=''
 let count=0 
 
@@ -32,8 +33,8 @@ function Book(id,title,author,pages){
   const button = document.getElementById('new-book');
   const close = document.querySelector('.close')
   const submit = document.querySelector('.submit')
-  button.addEventListener('click',()=>{show_data_card('open')})
-  close.addEventListener('click',()=>{show_data_card('close')})
+  button.addEventListener('click',()=>{show_data_card('open',null)})
+  close.addEventListener('click',()=>{show_data_card('close',null)})
   submit.addEventListener('click',(e)=>{
     e.preventDefault()
     submit_data()
@@ -42,7 +43,8 @@ function Book(id,title,author,pages){
 
   
 
-  function show_data_card(msg){
+  function show_data_card(msg,target){ // need target for to get book id for update
+    const dup_update_flag = gmsg // Keep old msg , if old msg and new msg are both update then do not do nothing
     gmsg=msg
     const isVisible= cardNode.classList.contains('visible-data-card');
     const isHidden= cardNode.classList.contains('hidden-data-card');
@@ -50,26 +52,56 @@ function Book(id,title,author,pages){
     const flagCondition=cardNode.classList.contains('flag')
     const openCondition= gmsg==('open' || 'update') && isVisible;
     const closeCondition= gmsg=='close' && isHidden;
+    const updateCondition= gmsg=='update';
+    const prevUpdateCondition = dup_update_flag=='update'
+    const updateDupCondition= !(prevUpdateCondition && updateCondition);
     if(!(openCondition || closeCondition)){
 
       if(flagCondition){
-        //cardNode.classList.replace('flag','visible-data-card');
         replace({primary:'flag',replacement:'visible-data-card'})
       }
       else{
-        //cardNode.classList.toggle('hidden-data-card');
-        //cardNode.classList.toggle('visible-data-card');
-        toggle(['hidden-data-card','visible-data-card'])
+        
+        if(updateDupCondition){// In case new/old msg is update
+          toggle(['hidden-data-card','visible-data-card'])
+        }
+        
+        if(updateCondition){
+          //console.log('CHECK!')
+            const listNodes=document.getElementById(target).childNodes//[text,li,text,...] , text is useless , for line break
+            let entryTitle=listNodes[1].childNodes[0].textContent
+            let entryAuthor=listNodes[3].childNodes[0].textContent
+            let entryPages=listNodes[5].childNodes[0].textContent
+            
+            entryTitle= getVal(entryTitle)
+            entryAuthor= getVal(entryAuthor)
+            entryPages=getVal(entryPages)
+
+            const Nodes = get_data_card_nodes()
+            set_data_card_nodes(Nodes,[entryTitle,entryAuthor,entryPages]) // to display entry values on data card inputs
+            updateTarget=target // store target to global variable to use it when handling update submission
+            
+
+          }
+          
+        }
         
       }
     } 
 
-  }
+  
   function get_data_card_nodes(){
     const titleNode=document.getElementById('book-title');
     const authorNode=document.getElementById('book-author');
     const pagesNode=document.getElementById('book-pages');
     return [titleNode,authorNode,pagesNode]
+  }
+
+  function set_data_card_nodes(nodes,values){
+
+    nodes.forEach((node,index)=>{
+      node.value=values[index]
+    })
   }
   
 
@@ -94,9 +126,9 @@ function Book(id,title,author,pages){
     const pagesNode=document.getElementById('book-pages');*/
     const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode]
 
-    const title=Nodes[0].value//titleNode.value;
-    const author=Nodes[1].value //authorNode.value;
-    const pages= Nodes[2].value//pagesNode.value;
+    const title=Nodes[0].value;
+    const author=Nodes[1].value;
+    const pages= Nodes[2].value;
 
    count=count+1 
 
@@ -110,7 +142,25 @@ function Book(id,title,author,pages){
   function updateBook(){
     
     replace({primary:'visible-data-card',replacement:'hidden-data-card'})
-    console.log('OLA POPA')
+    //console.log('OLA POPA')
+      const listNodes=document.getElementById(updateTarget).childNodes//[text,li,text,...] , text is useless , for line break
+      
+
+    const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode]
+
+    const title=Nodes[0].value;
+    const author=Nodes[1].value;
+    const pages= Nodes[2].value;
+
+    listNodes[1].childNodes[0].textContent=title;
+    listNodes[3].childNodes[0].textContent=author;
+    listNodes[5].childNodes[0].textContent=pages;
+
+    clearText(Nodes);
+
+    gmsg='' // To avoid duplicate update check on next onclick for update
+
+
   }
 
   function addBookToLibrary(id,title,author,pages){
@@ -120,11 +170,11 @@ function Book(id,title,author,pages){
   }
 
   function displayToDOM(){
-    container.innerHTML= `${myLibrary.map((book) => `<ul>
+    container.innerHTML= `${myLibrary.map((book) => `<ul id="${book.id}">
       <li><p>Title:${book.title}</p></li>
       <li><p>Author:${book.author}</p></li>
       <li><p>Pages:${book.pages}</p></li>
-      <li><button id="${book.id}" >Update<button></li>
+      <li><button>Update<button></li>
       </ul>`).join('')}`
 
   }
@@ -132,9 +182,10 @@ function Book(id,title,author,pages){
   function addUpdateEventListener(){
     myLibrary.forEach((book)=>{
       const updateButtonNode=document.getElementById(book.id)
-      updateButtonNode.addEventListener('click',()=>{
+      updateButtonNode.addEventListener('click',(e)=>{
         console.log('update message!:)')
-        show_data_card('update');
+        
+        show_data_card('update',e.currentTarget.id);
       })
     })
     
@@ -157,4 +208,12 @@ function Book(id,title,author,pages){
     });
   }
   
+  function getVal(str){
+    if(str.includes(":")){
+      str=str.split(":")
+      str=str[1]
+    }
+    
+    return str
+  }
   //document.body.appendChild(main()).appendChild(component());
