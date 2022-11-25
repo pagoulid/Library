@@ -74,7 +74,7 @@ main{
     
 
 }
-#books-container div{
+#books-container .wrapper{
     padding:1%;
     flex: 1 1 0px
 }
@@ -216,6 +216,9 @@ main{
 @media screen and (max-width:300px){
     #new-book{
         left:75%;
+    }
+    #books-container{
+        left:2%;
     }
     .data-card{
         left:2%;

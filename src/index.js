@@ -78,7 +78,7 @@ function updateBook(){
 /*BOOK*/ 
 
 function displayToDOM(){
-  container.innerHTML= `${myLibrary.map((book) => `<div><ul id="${book.id}">
+  container.innerHTML= `${myLibrary.map((book) => `<div class="wrapper"><ul id="${book.id}">
     <li><p>Title : ${book.title}</p></li>
     <li><p>Author : ${book.author}</p></li>
     <li><p>Pages : ${book.pages}</p></li>
