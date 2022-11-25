@@ -18,8 +18,9 @@ html{
 body{
     width:inherit;
     height:inherit;
-    overflow: hidden;
+    overflow: auto;
 }
+
 header{
     height:10%;
     background-color:var(--clr-blue);
@@ -31,7 +32,7 @@ header h1{
     margin:auto;
 }
 main{
-    height:90%;
+    min-height:90%;
     background-color:var(--clr-dark);
 }
 #new-book{
@@ -49,13 +50,48 @@ main{
 }
 
 #books-container{
+    width:70%;
     display:flex;
     flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: flex-start;
+    position:absolute;
+    top:20%;
+    left:10%;
+    
+    
+    
 
 }
+#books-container div{
+    padding:1%;
+}
 #books-container ul{
+    
+    min-width:100px;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
     background-color: white;
     padding:2rem;
+    border:8px groove #636864
+}
+
+
+#books-container .update{
+    width:100%;
+    background-color: #18d444;
+    color: white;
+    padding:1rem; 
+    border:2px outset;
+}
+#books-container .delete{
+    width:100%;
+    background-color: #7a15d8;
+    color: white;
+    padding:1rem;
+    border:2px outset;
 }
 
 .data-card{

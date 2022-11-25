@@ -78,13 +78,13 @@ function updateBook(){
 /*BOOK*/ 
 
 function displayToDOM(){
-  container.innerHTML= `${myLibrary.map((book) => `<ul id="${book.id}">
+  container.innerHTML= `${myLibrary.map((book) => `<div><ul id="${book.id}">
     <li><p>Title:${book.title}</p></li>
     <li><p>Author:${book.author}</p></li>
     <li><p>Pages:${book.pages}</p></li>
-    <li><button>Update<button></li>
-    <li><button>Delete<button></li>
-    </ul>`).join('')}`
+    <li><button class="update">Update <i class="fa fa-pencil" aria-hidden="true"></i></button></li>
+    <li><button class="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></li>
+    </ul></div>`).join('')}`
 }
 
 
@@ -110,7 +110,7 @@ function displayToDOM(){
       
       updateButtonNode.addEventListener('click',(e)=>{
       const clickedButton= e.target.textContent; // target is the button user clicked
-        if(clickedButton=='Update'){
+        if(clickedButton.includes('Update')){
           show_data_card('update',e.currentTarget.id);
         }
         else{ //delete operation
