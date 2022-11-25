@@ -16,15 +16,19 @@ html{
     /*overflow: hidden;*/
 }
 body{
-    width:inherit;
+   /* width:inherit;
     height:inherit;
-    overflow: auto;
+    overflow: auto;*/
+    display:flex;
+    background-color:var(--clr-dark);
+
 }
 
 header{
+    flex-grow:1;
     height:10%;
     background-color:var(--clr-blue);
-    padding-top:3rem;
+    padding:1rem;
 }
 header h1{
     color: white;
@@ -33,7 +37,7 @@ header h1{
 }
 main{
     min-height:90%;
-    background-color:var(--clr-dark);
+   /* background-color:var(--clr-dark);*/
 }
 #new-book{
     width:3rem;
@@ -122,7 +126,7 @@ main{
 @keyframes transform-opacity{
     from {
         opacity: 0;
-        top:50rem;
+        top:-50rem;
     }
 
     to {
@@ -139,7 +143,7 @@ main{
 
     to {
         opacity:0;
-        top:50rem;
+        top:-50rem;
     }
 }
 .data-card .data-header{
