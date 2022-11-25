@@ -61,7 +61,7 @@ main{
     width:30%;
     min-width:230px;
     background-color: white;
-    position:absolute;
+    position:fixed;
     left:25vw;
     z-index:2; 
 }
