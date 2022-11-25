@@ -79,9 +79,9 @@ function updateBook(){
 
 function displayToDOM(){
   container.innerHTML= `${myLibrary.map((book) => `<div><ul id="${book.id}">
-    <li><p>Title:${book.title}</p></li>
-    <li><p>Author:${book.author}</p></li>
-    <li><p>Pages:${book.pages}</p></li>
+    <li><p>Title : ${book.title}</p></li>
+    <li><p>Author : ${book.author}</p></li>
+    <li><p>Pages : ${book.pages}</p></li>
     <li><button class="update">Update <i class="fa fa-pencil" aria-hidden="true"></i></button></li>
     <li><button class="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></li>
     </ul></div>`).join('')}`

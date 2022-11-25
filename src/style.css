@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'chlorinr';
+    src: url(./CHLORINR.TTF);
+}
 :root{
     --clr-blue:#2185d5;
     --clr-dark:#2d4059;
@@ -15,13 +19,16 @@ html{
     height:100%;
     /*overflow: hidden;*/
 }
+
+label,p{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'chlorinr',sans-serif;
+    color: var(--clr-blue);
+}
 body{
-   /* width:inherit;
-    height:inherit;
-    overflow: auto;*/
     display:flex;
     background-color:var(--clr-dark);
-
 }
 
 header{
@@ -150,9 +157,9 @@ main{
     display:flex;
     flex-flow: row;
     justify-content: center;
-    gap:10%;
+    gap:40%;
     
-    margin:auto;
+    
 }
 .data-header h1{
     color: var(--clr-blue);
@@ -162,11 +169,16 @@ main{
 .data-header i{
     float: right;
     font-size: var(--fnt-size-icon-lg);
-    color:var(--clr-blue)
+    color:var(--clr-blue);
+    padding-right:2%;
 }
 
 .data-card form{
     width:80%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:1rem;
     padding:1rem;
     margin-top: 2rem;
 }
@@ -176,25 +188,26 @@ main{
     width:100%;
     min-width:200px;
     height:2rem;
-    margin-top:1rem;
+    
 
 }
 
 .data-card input[type="submit"]{
+    font-size: medium;
     text-align: center;
     color: whitesmoke;
     background-color: var(--clr-blue);
     
-    padding-top:2%;
-    padding-bottom:5%;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-top:1rem;
 }
 
 
 @media screen and (max-width:500px){
   
     .data-card{
-        left:20%;
-        top:15rem;
+        left:15%;
         padding:5%;
     }
 }
