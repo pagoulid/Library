@@ -43,8 +43,9 @@ main{
     text-align: center;
     font-size: var(--fnt-size-icon-md);
     position:fixed;
-    top:80%;
     left:80%;
+    top:80%;
+    
 }
 
 #books-container{
@@ -64,7 +65,7 @@ main{
     /*padding:5rem;*/
     background-color: white;
     position:absolute;
-    top:5rem;
+    /*top:5rem;*/
     left:25vw;
     z-index:2;
     
@@ -73,32 +74,36 @@ main{
     opacity:0;
 }
 .hidden-data-card{
-    animation: 2s transform-opacity2 1 linear;
+    animation: 1s transform-opacity2 1 linear;
     animation-fill-mode: forwards; 
     
 }
 .visible-data-card{
-    animation: 2s transform-opacity 1 linear;
+    animation: 1s transform-opacity 1 linear;
     animation-fill-mode: forwards; 
 }
 
 @keyframes transform-opacity{
     from {
         opacity: 0;
+        top:50rem;
     }
 
     to {
         opacity:1;
+        top:5rem;
     }
 }
 
 @keyframes transform-opacity2{
     from {
         opacity: 1;
+        top:5rem;
     }
 
     to {
         opacity:0;
+        top:50rem;
     }
 }
 .data-card .data-header{
