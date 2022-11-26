@@ -74,14 +74,11 @@ function updateBookFromLibrary(id,updated_title,updated_author,updated_pages){
 /*DOM FUNCTIONS*/ 
 function addBook(){
   
-  
   const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode] -> get input data
   const title=Nodes[0].value;
   const author=Nodes[1].value;
   const pages= Nodes[2].value;
   const nonEmptyCondition= title!=''&&author!=''&&pages!='';
-  
-  
   
   if(nonEmptyCondition){
     const t_validation=validTitle(title);
@@ -89,6 +86,7 @@ function addBook(){
     const p_validation=validPages(pages.trim());
     const validationCondition=t_validation&&a_validation&&p_validation;
     if(validationCondition){
+
       replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})// close after submission
       count=count+1 
       const newBook =new Book(count,title,author,pages);
@@ -96,8 +94,10 @@ function addBook(){
       displayToDOM();
       addEntriesEventListener();
       clearText(Nodes);// clear input text from submission card
+
     }
     else{
+
       if(!t_validation){
         alert('Title must contain only letters and/or numbers');
       }
@@ -107,6 +107,7 @@ function addBook(){
       if(!p_validation){
         alert('Pages must contain only numbers');
       }
+
     }
   }
   else{
@@ -114,8 +115,6 @@ function addBook(){
     }
   }
  
-
-
 function deleteBook(id){
   deleteBookFromLibrary(id,count)
   displayToDOM()
@@ -123,15 +122,13 @@ function deleteBook(id){
 }
 
 function updateBook(){
-    
-  
-  
+
   const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode]-> get input data
   const title=Nodes[0].value.trim();
   const author=Nodes[1].value.trim();
   const pages= Nodes[2].value.trim();
   const nonEmptyCondition= title!=''&&author!=''&&pages!='';
-  console.log(author)
+
   if(nonEmptyCondition){
     const t_validation=validTitle(title);
     const a_validation=validAuthor(author);
@@ -162,7 +159,6 @@ function updateBook(){
   else{
     alert('Cannot submit empty input field');
   }
-  
 }
 
 function displayToDOM(){
@@ -246,6 +242,7 @@ function show_data_card(msg,target){ // need target for to get book id for updat
           updateTarget=target // store target to global variable to use it when handling update submission
       }
     }
+    
   }
 } 
 /*SUBMIT CARD*/
