@@ -1,6 +1,7 @@
 import _ from 'lodash';
-import {replace,toggle,getVal,clearText} from './functions.js'
+import {replace,toggle,clearText} from './functions.js'
 import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
+import {validTitle,validAuthor,validPages } from './validation.js';
 import './style.css';
 
 /* GLOBALS */
@@ -72,20 +73,48 @@ function updateBookFromLibrary(id,updated_title,updated_author,updated_pages){
 /*LIBRARY FUNCTIONS*/ 
 /*DOM FUNCTIONS*/ 
 function addBook(){
-  replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})// close after submission
+  
   
   const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode] -> get input data
   const title=Nodes[0].value;
   const author=Nodes[1].value;
   const pages= Nodes[2].value;
+  const nonEmptyCondition= title!=''&&author!=''&&pages!='';
+  
+  
+  
+  if(nonEmptyCondition){
+    const t_validation=validTitle(title);
+    const a_validation=validAuthor(author);
+    const p_validation=validPages(pages.trim());
+    const validationCondition=t_validation&&a_validation&&p_validation;
+    if(validationCondition){
+      replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})// close after submission
+      count=count+1 
+      const newBook =new Book(count,title,author,pages);
+      addBookToLibrary(newBook)//(count,title,author,pages);
+      displayToDOM();
+      addEntriesEventListener();
+      clearText(Nodes);// clear input text from submission card
+    }
+    else{
+      if(!t_validation){
+        alert('Title must contain only letters and/or numbers');
+      }
+      if(!a_validation){
+        alert('Author must contain only letters');
+      }
+      if(!p_validation){
+        alert('Pages must contain only numbers');
+      }
+    }
+  }
+  else{
+      alert('Cannot submit empty input field')
+    }
+  }
+ 
 
-  count=count+1 
-  const newBook =new Book(count,title,author,pages);
-  addBookToLibrary(newBook)//(count,title,author,pages);
-  displayToDOM();
-  addEntriesEventListener();
-  clearText(Nodes);// clear input text from submission card
-}
 
 function deleteBook(id){
   deleteBookFromLibrary(id,count)
@@ -95,18 +124,45 @@ function deleteBook(id){
 
 function updateBook(){
     
-  replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
+  
   
   const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode]-> get input data
-  const title=Nodes[0].value;
-  const author=Nodes[1].value;
-  const pages= Nodes[2].value;
+  const title=Nodes[0].value.trim();
+  const author=Nodes[1].value.trim();
+  const pages= Nodes[2].value.trim();
+  const nonEmptyCondition= title!=''&&author!=''&&pages!='';
+  console.log(author)
+  if(nonEmptyCondition){
+    const t_validation=validTitle(title);
+    const a_validation=validAuthor(author);
+    const p_validation=validPages(pages.trim());
+    const validationCondition=t_validation&&a_validation&&p_validation;
+    if(validationCondition){
 
-  updateBookFromLibrary(updateTarget-1,title.trim(),author.trim(),pages.trim())
-  displayToDOM()
-  addEntriesEventListener() 
-  clearText(Nodes);
-  gmsg='' // To avoid duplicate update check on next onclick for update
+      replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
+
+      updateBookFromLibrary(updateTarget-1,title,author,pages)
+      displayToDOM()
+      addEntriesEventListener() 
+      clearText(Nodes);
+      gmsg='' // To avoid duplicate update check on next onclick for update
+    }
+    else{
+      if(!t_validation){
+        alert('Title must contain only letters and/or numbers');
+      }
+      if(!a_validation){
+        alert('Author must contain only letters');
+      }
+      if(!p_validation){
+        alert('Pages must contain only numbers');
+      }
+    } 
+  }
+  else{
+    alert('Cannot submit empty input field');
+  }
+  
 }
 
 function displayToDOM(){
