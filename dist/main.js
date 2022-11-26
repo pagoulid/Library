@@ -180,7 +180,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var loda
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"validAuthor\": () => (/* binding */ validAuthor),\n/* harmony export */   \"validPages\": () => (/* binding */ validPages),\n/* harmony export */   \"validTitle\": () => (/* binding */ validTitle)\n/* harmony export */ });\nfunction validTitle(title){\r\n    return  Boolean(title?.match(/^[A-Za-z0-9-\"\\s]*$/));\r\n}\r\nfunction validAuthor(author){\r\n    return  Boolean(author?.match(/^[A-Za-z\\s]*$/));\r\n}\r\nfunction validPages(pages){\r\n    return Boolean(pages?.match(/^[0-9]*$/));\r\n}\n\n//# sourceURL=webpack://library/./src/validation.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"validAuthor\": () => (/* binding */ validAuthor),\n/* harmony export */   \"validPages\": () => (/* binding */ validPages),\n/* harmony export */   \"validTitle\": () => (/* binding */ validTitle)\n/* harmony export */ });\nfunction validTitle(title){\r\n    return  Boolean(title?.match(/^[A-Za-z0-9\"\\s]*$/));\r\n}\r\nfunction validAuthor(author){\r\n    return  Boolean(author?.match(/^[A-Za-z\\s]*$/));\r\n}\r\nfunction validPages(pages){\r\n    return Boolean(pages?.match(/^[0-9]*$/));\r\n}\n\n//# sourceURL=webpack://library/./src/validation.js?");
 
 /***/ }),
 
