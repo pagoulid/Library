@@ -220,7 +220,7 @@ function show_data_card(msg,target){ // need target for to get book id for updat
   const updateDupCondition= !(prevUpdateCondition && updateCondition); // avoid duplicates clicks
 
   if(closeCondition){
-    const Nodes=get_data_card_nodes()
+    const Nodes=get_data_card_nodes() 
     Nodes[0].value=''
     Nodes[1].value=''
     Nodes[2].value=''
@@ -242,7 +242,7 @@ function show_data_card(msg,target){ // need target for to get book id for updat
           updateTarget=target // store target to global variable to use it when handling update submission
       }
     }
-    
+
   }
 } 
 /*SUBMIT CARD*/
