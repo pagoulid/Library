@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import {replace,toggle,clearText} from './functions.js'
 import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
-//import Book from './Book.js'
-//import {validTitle,validAuthor,validPages } from './validation.js';
 import './style.css';
+
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
@@ -17,9 +16,7 @@ const validTitle=validations[0];
 const validAuthor=validations[1];
 const validPages=validations[2];
 /*VALIDATION FUNCTIONS*/
-/* GLOBALS */
-//let myLibrary=[] 
-
+/* GLOBALS */ 
 let updateTarget='' // store target which is going to be updated
 let gmsg=''  // store msg for submission card (open/close/update)
 let count=0  //count books

@@ -1,6 +1,9 @@
 module.exports=class Library{
     constructor(){
-        this.books=[]
+        this.books=[]/*async function(){ 
+            let data = fetch;
+            return
+        }//[]*/
     }
 
     addBookToLibrary(book){
