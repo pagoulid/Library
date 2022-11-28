@@ -6,6 +6,9 @@ import './style.css';
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
+if(myLibrary.books.length>0){
+  myLibrary.addEntriesEventListener(BookEventCase)
+}
 /*LIBRARY*/
 /*BOOK*/ 
 const Book=require('./Book')
@@ -135,7 +138,7 @@ submit.addEventListener('click',(e)=>{
   submit_data()
 })
 /*EVENT LISTENERS*/
-function BookEventCase(event){
+export function BookEventCase(event){
 
   const clickedButton= event.target.textContent; // target is the button user clicked
   if(clickedButton.includes('Update')){

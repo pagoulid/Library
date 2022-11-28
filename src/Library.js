@@ -1,9 +1,19 @@
+
 module.exports=class Library{
     constructor(){
-        this.books=[]/*async function(){ 
-            let data = fetch;
-            return
+        const fetchData=async function(){ 
+            const URL = 'https://pagoulid.github.io/data.json';
+            const request = new Request(URL);
+            let data = await fetch(request);
+            data = await data.json()
+            return data
         }//[]*/
+        this.books=fetchData();
+
+        if(this.books.length>0){
+            this.displayToDOM()
+        }
+
     }
 
     addBookToLibrary(book){
