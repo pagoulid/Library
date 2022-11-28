@@ -1,7 +1,14 @@
-{
+[{
     "id":1,
     "title":"kalampokhs",
     "author":"gouli",
     "pages":500
-
+},
+{
+    "id":2,
+    "title":"minecrafter",
+    "author":"koztaz",
+    "pages":1000
 }
+]
+
