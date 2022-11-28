@@ -6,6 +6,7 @@ module.exports=class Library{
             const request = new Request(URL);
             let data = await fetch(request);
             data = await data.json()
+            console.log(data)
             return data
         }//[]*/
         this.books=fetchData();
