@@ -2,7 +2,7 @@
 module.exports=class Library{
     constructor(){
         const fetchData=async function(){ 
-            const URL = 'https://pagoulid.github.io/data.json';
+            const URL = 'https://pagoulid.github.io/Library/data.json';
             const request = new Request(URL);
             let data = await fetch(request);
             data = await data.json()
