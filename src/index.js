@@ -1,11 +1,24 @@
 import _ from 'lodash';
 import {replace,toggle,clearText} from './functions.js'
 import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
-import {validTitle,validAuthor,validPages } from './validation.js';
+//import Book from './Book.js'
+//import {validTitle,validAuthor,validPages } from './validation.js';
 import './style.css';
-
+/*LIBRARY*/
+const Library=require('./Library'); 
+let myLibrary=new Library()
+/*LIBRARY*/
+/*BOOK*/ 
+const Book=require('./Book')
+/*BOOK*/
+/*VALIDATION FUNCTIONS*/
+const validations=require('./validation');
+const validTitle=validations[0];
+const validAuthor=validations[1];
+const validPages=validations[2];
+/*VALIDATION FUNCTIONS*/
 /* GLOBALS */
-let myLibrary=[] 
+//let myLibrary=[] 
 
 let updateTarget='' // store target which is going to be updated
 let gmsg=''  // store msg for submission card (open/close/update)
@@ -18,59 +31,6 @@ const button = document.getElementById('new-book');
 const close = document.querySelector('.close')
 const submit = document.querySelector('.submit')
 /*NODES*/ 
-/*BOOK*/ 
-function Book(id,title,author,pages){
-  this.id=id
-  this.title=title
-  this.author=author
-  this.pages=pages
-}
-
-Book.prototype.compareTitle=function(otherTitle){
-  if(otherTitle==this.title){
-    return true
-  }
-  return false
-}
-Book.prototype.compareAuthor=function(otherAuthor){
-  if(otherAuthor==this.author){
-    return true
-  }
-  return false
-}
-Book.prototype.comparePages=function(otherPages){
-  if(otherPages==this.pages){
-    return true
-  }
-  return false
-}
-/*BOOK*/ 
-/*LIBRARY FUNCTIONS*/ 
-function addBookToLibrary(book){
-  myLibrary.push(book);
-}
-function deleteBookFromLibrary(id){
-  myLibrary.splice(id-1,1) // remove book with targeted id
-  
-  count=count-1
-  for(let i=0;i<=count-1;i++){ // rearrange ids to books
-    myLibrary[i].id=i+1
-  }
-}
-function updateBookFromLibrary(id,updated_title,updated_author,updated_pages){
-  let targetBook = Object.create(myLibrary[id]) 
-  
-  if(!(targetBook.compareTitle(updated_title))){
-    myLibrary[id].title=updated_title
-  }
-  if(!(targetBook.compareAuthor(updated_author))){
-    myLibrary[id].author=updated_author
-  }
-  if(!(targetBook.comparePages(updated_pages))){
-    myLibrary[id].pages=updated_pages
-  }   
-}
-/*LIBRARY FUNCTIONS*/ 
 /*DOM FUNCTIONS*/ 
 function addBook(){
   
@@ -90,9 +50,12 @@ function addBook(){
       replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})// close after submission
       count=count+1 
       const newBook =new Book(count,title,author,pages);
-      addBookToLibrary(newBook)//(count,title,author,pages);
-      displayToDOM();
-      addEntriesEventListener();
+
+      myLibrary.addBookToLibrary(newBook)
+      console.log('Add to library:',myLibrary.books)
+      myLibrary.displayToDOM(container);
+      myLibrary.addEntriesEventListener(BookEventCase);
+
       clearText(Nodes);// clear input text from submission card
 
     }
@@ -116,9 +79,12 @@ function addBook(){
   }
  
 function deleteBook(id){
-  deleteBookFromLibrary(id,count)
-  displayToDOM()
-  addEntriesEventListener()
+  myLibrary.deleteBookFromLibrary(id,count);
+  count=count-1
+  myLibrary.reArrangeBooks(count)
+  console.log('Library after deletion:',myLibrary.books)
+  myLibrary.displayToDOM(container);
+  myLibrary.addEntriesEventListener(BookEventCase);
 }
 
 function updateBook(){
@@ -138,9 +104,11 @@ function updateBook(){
 
       replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
 
-      updateBookFromLibrary(updateTarget-1,title,author,pages)
-      displayToDOM()
-      addEntriesEventListener() 
+      myLibrary.updateBookFromLibrary(updateTarget-1,title,author,pages)
+      console.log('Library after update:',myLibrary.books) 
+      myLibrary.displayToDOM(container);
+      myLibrary.addEntriesEventListener(BookEventCase);
+
       clearText(Nodes);
       gmsg='' // To avoid duplicate update check on next onclick for update
     }
@@ -161,16 +129,7 @@ function updateBook(){
   }
 }
 
-function displayToDOM(){
-  container.innerHTML= `${myLibrary.map((book) => `<div class="wrapper"><ul id="${book.id}">
-    <li><p>Title : ${book.title}</p></li>
-    <li><p>Author : ${book.author}</p></li>
-    <li><p>Pages : ${book.pages}</p></li>
-    <li><button class="update">Update <i class="fa fa-pencil" aria-hidden="true"></i></button></li>
-    <li><button class="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></li>
-    </ul></div>`).join('')}`
-}
-/*DOM FUNCTIONS*/
+
 /*EVENT LISTENERS*/
 button.addEventListener('click',()=>{show_data_card('open',null)})
 close.addEventListener('click',()=>{show_data_card('close',null)})
@@ -178,24 +137,18 @@ submit.addEventListener('click',(e)=>{
   e.preventDefault()
   submit_data()
 })
-
-function addEntriesEventListener(){
-  myLibrary.forEach((book)=>{
-
-    const updateButtonNode=document.getElementById(book.id)
-    updateButtonNode.addEventListener('click',(e)=>{
-
-      const clickedButton= e.target.textContent; // target is the button user clicked
-      if(clickedButton.includes('Update')){
-        show_data_card('update',e.currentTarget.id);
-      }
-      else{ 
-        deleteBook(e.currentTarget.id) // currentTarget is the card user clicked on
-      }   
-    })
-  })  
-}
 /*EVENT LISTENERS*/
+function BookEventCase(event){
+
+  const clickedButton= event.target.textContent; // target is the button user clicked
+  if(clickedButton.includes('Update')){
+    show_data_card('update',event.currentTarget.id);
+  }
+  else{ 
+    deleteBook(event.currentTarget.id) // currentTarget is the card user clicked on
+  }
+
+}
 /*SUBMIT CARD*/ 
 function submit_data(){
   if(gmsg=='open'){ // what button did user clicked on (update or + to add??)
