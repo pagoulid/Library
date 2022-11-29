@@ -15,7 +15,7 @@ const fetchData=async function(){
             console.log(data)
             if(data.length>0){
               
-              for(let el in data){
+              for(el in data){
                 console.log('MA DATA ',el.title)
                 let storedBook=new Book(el.id,el.title,el.author,el.pages)
                 myLibrary.addBookToLibrary(storedBook)
