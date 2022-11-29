@@ -1,4 +1,4 @@
-[tvalid,avalid,pvalid] = require('../src/validation');
+[tvalid,avalid,pvalid] = require('../src/scripts/validation/validation');
 
 test('Book entry with: <title:It, author:Stephen King, pages:500> is  acceptable', () => {
   expect(tvalid('It')).toBe(true);

@@ -1,7 +1,8 @@
 import _ from 'lodash';
-import {replace,toggle,clearText} from './functions.js'
-import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
-import { changeStatus,resetStatus } from './status.js';
+import {replace,toggle,clearText} from './scripts/modules/functions.js'
+import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './scripts/modules/data.js'
+import ErrorMsg from './scripts/validation/validationError.js';
+import { changeStatus,resetStatus } from './scripts/modules/status.js';
 import './style.css';
 /* GLOBALS */ 
 let updateTarget='' // store target which is going to be updated
@@ -13,14 +14,14 @@ statusObject['unfinished']=0;
 statusObject['completed']=1;
 /* GLOBALS */
 /*LIBRARY*/
-const Library=require('./Library'); 
+const Library=require('./Class/Library'); 
 let myLibrary=new Library()
 /*LIBRARY*/
 /*BOOK*/ 
-const Book=require('./Book')
+const Book=require('./Class/Book')
 /*BOOK*/
 /*VALIDATION FUNCTIONS*/
-const validations=require('./validation');
+const validations=require('./scripts/validation/validation');
 const validTitle=validations[0];
 const validAuthor=validations[1];
 const validPages=validations[2];
@@ -61,17 +62,7 @@ function addBook(){
       reset(Nodes)
     }
     else{
-
-      if(!t_validation){
-        alert('Title must contain only letters and/or numbers');
-      }
-      if(!a_validation){
-        alert('Author must contain only letters');
-      }
-      if(!p_validation){
-        alert('Pages must contain only numbers');
-      }
-
+      ErrorMsg([t_validation,a_validation,p_validation],['Title must contain only letters and/or numbers','Author must contain only letters','Pages must contain only numbers'])
     }
   }
   else{
@@ -115,15 +106,7 @@ function updateBook(){
       gmsg='' // To avoid duplicate update check on next onclick for update
     }
     else{
-      if(!t_validation){
-        alert('Title must contain only letters and/or numbers');
-      }
-      if(!a_validation){
-        alert('Author must contain only letters');
-      }
-      if(!p_validation){
-        alert('Pages must contain only numbers');
-      }
+      ErrorMsg([t_validation,a_validation,p_validation],['Title must contain only letters and/or numbers','Author must contain only letters','Pages must contain only numbers'])
     } 
   }
   else{
@@ -207,8 +190,8 @@ export function BookEventCase(event){
     show_data_card('update',event.currentTarget.id);
   }
   else{
-    let submit_card=document.getElementById('books-container');// Alreasdy defined on global , but define it locally to pass it to Library method
-    if(submit_card.classList.contains('visible-data-card')){
+    let submit_card=document.querySelector('.data-card');// Alreasdy defined on global , but define it locally to pass it to Library method
+    if(submit_card.classList.contains('hidden-data-card')){// if submit card is closed
       deleteBook(event.currentTarget.id) // currentTarget is the card user clicked on
     }
     

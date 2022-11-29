@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'chlorinr';
-    src: url(./CHLORINR.TTF);
+    src: url(./fonts/CHLORINR.TTF);
 }
 :root{
     --clr-blue:#2185d5;
