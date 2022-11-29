@@ -18,7 +18,19 @@ const fetchData=async function(){
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
-let data = fetchData()
+fetchData().then(function(data){
+  if(data.length>0){
+    let storedBook={};
+    for(el in data){
+      storedBook=new Book(el.id,el.title,el.author,el.pages)
+      myLibrary.addBookToLibrary(storedBook)
+    }
+    myLibrary.displayToDOM();
+    myLibrary.addEntriesEventListener(BookEventCase)
+  }
+}
+
+)
 console.log('MA DATA',data)
 
 /*LIBRARY*/
