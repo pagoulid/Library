@@ -1,9 +1,11 @@
 module.exports= class Book{
-    constructor(id,title,author,pages){
+    constructor(id,title,author,pages,status){
         this.id=id
         this.title=title
         this.author=author
         this.pages=pages
+        this.status=status
+
     }
 
     compareTitle(otherTitle){
