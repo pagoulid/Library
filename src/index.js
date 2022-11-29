@@ -14,6 +14,7 @@ const fetchData=async function(){
             data = await data.json()
             
             if(data.length>0){
+              let storedBook={};
               for(let el in data){
                 console.log('MA DATA ',el.title)
                 storedBook=new Book(el.id,el.title,el.author,el.pages)
