@@ -28,11 +28,12 @@ const Book=require('./Book')
   for(el in data){
     console.log(el.title)
     let storedBook=new Book(el.id,el.title,el.author,el.pages);
-    myLibrary.addBookToLibrary(storedBook)
+    console.log(storedBook.author)
+    //myLibrary.addBookToLibrary(storedBook)
     }
-  myLibrary.displayToDOM();
-  myLibrary.addEntriesEventListener(BookEventCase);
-  count=myLibrary.books.length;
+  //myLibrary.displayToDOM();
+  //myLibrary.addEntriesEventListener(BookEventCase);
+  //count=myLibrary.books.length;
 //}
 /*VALIDATION FUNCTIONS*/
 const validations=require('./validation');
