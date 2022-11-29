@@ -16,7 +16,7 @@ const fetchData=async function(){
             
             if(data.length>0){
               
-              for(el in data){
+              for(let el in data){
                 el=JSON.parse(el);
                 console.log('MA DATA ',el.title)
                 let storedBook=new Book(el.id,el.title,el.author,el.pages)
