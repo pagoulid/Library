@@ -21,7 +21,7 @@ let myLibrary=new Library()
 fetchData().then(function(data){
   //if(data.length>0){
     let storedBook={};
-    for(el in data){
+    for(let el in data){
       console.log(el.title)
       storedBook=new Book(el.id,el.title,el.author,el.pages)
       myLibrary.addBookToLibrary(storedBook)
@@ -32,7 +32,7 @@ fetchData().then(function(data){
 }
 
 )
-console.log('MA DATA',data)
+
 
 /*LIBRARY*/
 /*BOOK*/ 
