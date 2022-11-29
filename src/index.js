@@ -2,6 +2,11 @@ import _ from 'lodash';
 import {replace,toggle,clearText} from './functions.js'
 import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
 import './style.css';
+/* GLOBALS */ 
+let updateTarget='' // store target which is going to be updated
+let gmsg=''  // store msg for submission card (open/close/update)
+let count=0  //count books
+/* GLOBALS */
 const fetchData=async function(){ 
             const URL = 'https://pagoulid.github.io/Library/data.json';
             const request = new Request(URL);
@@ -13,26 +18,28 @@ const fetchData=async function(){
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
-myLibrary.books=fetchData()
-if(myLibrary.books.length>0){
-  myLibrary.displayToDOM();
-  myLibrary.addEntriesEventListener(BookEventCase);
-}
+let data = fetchData()
+
 /*LIBRARY*/
 /*BOOK*/ 
 const Book=require('./Book')
 /*BOOK*/
+if(data.length>0){
+  for(el in data){
+    let storedBook=new Book(el.id,el.title,el.author,el.pages);
+    myLibrary.addBookToLibrary(storedBook)
+  }
+  myLibrary.displayToDOM();
+  myLibrary.addEntriesEventListener(BookEventCase);
+  count=myLibrary.books.length;
+}
 /*VALIDATION FUNCTIONS*/
 const validations=require('./validation');
 const validTitle=validations[0];
 const validAuthor=validations[1];
 const validPages=validations[2];
 /*VALIDATION FUNCTIONS*/
-/* GLOBALS */ 
-let updateTarget='' // store target which is going to be updated
-let gmsg=''  // store msg for submission card (open/close/update)
-let count=0  //count books
-/* GLOBALS */
+
 /*NODES*/ 
 const container=document.getElementById('books-container');
 const cardNode=document.querySelector('.data-card');
