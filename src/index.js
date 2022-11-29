@@ -24,15 +24,16 @@ let data = fetchData()
 /*BOOK*/ 
 const Book=require('./Book')
 /*BOOK*/
-if(data.length>0){
+//if(data.length>0){
   for(el in data){
+    console.log(el.title)
     let storedBook=new Book(el.id,el.title,el.author,el.pages);
     myLibrary.addBookToLibrary(storedBook)
-  }
+    }
   myLibrary.displayToDOM();
   myLibrary.addEntriesEventListener(BookEventCase);
   count=myLibrary.books.length;
-}
+//}
 /*VALIDATION FUNCTIONS*/
 const validations=require('./validation');
 const validTitle=validations[0];
