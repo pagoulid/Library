@@ -7,7 +7,7 @@ let updateTarget='' // store target which is going to be updated
 let gmsg=''  // store msg for submission card (open/close/update)
 let count=0  //count books
 /* GLOBALS */
-const fetchData=async function(){ 
+/*const fetchData=async function(){ 
             const URL = 'https://pagoulid.github.io/Library/data.json';
             const request = new Request(URL);
             let data = await fetch(request);
@@ -25,13 +25,10 @@ const fetchData=async function(){
               myLibrary.displayToDOM()
               myLibrary.addEntriesEventListener()
             }
-        }
+        }*/
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
-fetchData()
-
-
 /*LIBRARY*/
 /*BOOK*/ 
 const Book=require('./Book')
