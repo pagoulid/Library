@@ -13,25 +13,20 @@ const fetchData=async function(){
             let data = await fetch(request);
             data = await data.json()
             
-            return data
+            if(data.length>0){
+              for(let el in data){
+                console.log('MA DATA ',el.title)
+                storedBook=new Book(el.id,el.title,el.author,el.pages)
+                myLibrary.addBookToLibrary(storedBook)
+              }
+              myLibrary.displayToDOM()
+              myLibrary.addEntriesEventListener()
+            }
         }
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
-fetchData().then(function(data){
-  //if(data.length>0){
-    let storedBook={};
-    for(let el in data){
-      console.log(el.title)
-      storedBook=new Book(el.id,el.title,el.author,el.pages)
-      myLibrary.addBookToLibrary(storedBook)
-    }
-    myLibrary.displayToDOM();
-    myLibrary.addEntriesEventListener(BookEventCase)
- // }
-}
-
-)
+fetchData()
 
 
 /*LIBRARY*/
