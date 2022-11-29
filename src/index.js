@@ -2,13 +2,21 @@ import _ from 'lodash';
 import {replace,toggle,clearText} from './functions.js'
 import {get_data_card_nodes,set_data_card_nodes,get_entry_data} from './data.js'
 import './style.css';
-
+const fetchData=async function(){ 
+            const URL = 'https://pagoulid.github.io/Library/data.json';
+            const request = new Request(URL);
+            let data = await fetch(request);
+            data = await data.json()
+            console.log(data)
+            return data
+        }
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
-if(myLibrary.books.length>0){
+fetchData()
+/*if(myLibrary.books.length>0){
   myLibrary.addEntriesEventListener(BookEventCase)
-}
+}*/
 /*LIBRARY*/
 /*BOOK*/ 
 const Book=require('./Book')
