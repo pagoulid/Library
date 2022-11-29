@@ -12,10 +12,12 @@ const fetchData=async function(){
             const request = new Request(URL);
             let data = await fetch(request);
             data = await data.json()
-            console.log(data)
+            
+            
             if(data.length>0){
               
               for(el in data){
+                el=JSON.parse(el);
                 console.log('MA DATA ',el.title)
                 let storedBook=new Book(el.id,el.title,el.author,el.pages)
                 myLibrary.addBookToLibrary(storedBook)
