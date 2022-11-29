@@ -13,10 +13,11 @@ const fetchData=async function(){
 /*LIBRARY*/
 const Library=require('./Library'); 
 let myLibrary=new Library()
-fetchData()
-/*if(myLibrary.books.length>0){
-  myLibrary.addEntriesEventListener(BookEventCase)
-}*/
+myLibrary.books=fetchData()
+if(myLibrary.books.length>0){
+  myLibrary.displayToDOM();
+  myLibrary.addEntriesEventListener(BookEventCase);
+}
 /*LIBRARY*/
 /*BOOK*/ 
 const Book=require('./Book')
