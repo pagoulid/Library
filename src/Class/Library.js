@@ -39,6 +39,7 @@ module.exports=class Library{
             <li><p>Author : ${book.author}</p></li>
             <li><p>Pages : ${book.pages}</p></li>
             <li><p>Status : ${book.status}</p></li>
+            <li class="marker-list">${(book.status=='completed'&&'<i class="fa fa-check pmarker" aria-hidden="true"></i>') ||(book.status=='unfinished'&&'<i class="fa fa-times nmarker" aria-hidden="true"></i>') }</li>
             <li><button class="update">Update <i class="fa fa-pencil" aria-hidden="true"></i></button></li>
             <li><button class="delete">Delete <i class="fa fa-trash" aria-hidden="true"></i></button></li>
             </ul></div>`).join('')}`

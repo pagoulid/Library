@@ -143,6 +143,17 @@ main{
     padding:5rem;
     border:8px groove #636864
 }
+#books-container .marker-list{
+    text-align: center;
+}
+.marker-list .pmarker{
+    font-size: var(--fnt-size-icon-lg);
+    color: #18d444;
+}
+.marker-list .nmarker{
+    font-size: var(--fnt-size-icon-lg);
+    color: #ff0b0b;
+}
 #books-container .update{
     width:100%;
     background-color: #18d444;
