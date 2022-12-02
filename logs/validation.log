@@ -1,0 +1,19 @@
+
+> library@1.0.0 validation-test
+> mocha ./test/validation.test.js
+
+
+
+  Validation of given entries for book creation #1
+    ✔ It should be accepted as title
+    ✔ Stephen King should be accepted as author
+    ✔ 500 pages input format is accepted
+
+  Validation of given entries for book creation #2
+    ✔ Number 23 should be accepted as title
+    ✔ 23 Jim Carreys should not be accepted as author
+    ✔ one hundred pages input format is not  accepted
+
+
+  6 passing (5ms)
+

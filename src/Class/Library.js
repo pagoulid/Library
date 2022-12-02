@@ -10,22 +10,24 @@ module.exports=class Library{
     deleteBookFromLibrary(id){
         this.books.splice(id-1,1); 
     }
-    reArrangeBooks(total){
-        for(let i=0;i<=total-1;i++){ // rearrange ids to books
+    reArrangeBooks(){
+        for(let i=0;i<=this.books.length-1;i++){ // rearrange ids to books
             this.books[i].id=i+1
+           
           }
+        
     }
 
     updateBookFromLibrary(id,updated_title,updated_author,updated_pages,updated_status){
-        let targetBook = Object.create(this.books[id]) 
-        
-        if(!(targetBook.compareTitle(updated_title))){
+        //let targetBook = Object.create(this.books[id]) 
+        id=id-1;
+        if(!(this.books[id].compareTitle(updated_title))){
           this.books[id].title=updated_title
         }
-        if(!(targetBook.compareAuthor(updated_author))){
+        if(!(this.books[id].compareAuthor(updated_author))){
           this.books[id].author=updated_author
         }
-        if(!(targetBook.comparePages(updated_pages))){
+        if(!(this.books[id].comparePages(updated_pages))){
           this.books[id].pages=updated_pages
         }  
         

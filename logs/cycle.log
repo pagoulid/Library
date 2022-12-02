@@ -1,0 +1,28 @@
+
+> library@1.0.0 cycle-test
+> jest ./test/main.test.js
+
+ PASS  test/main.test.js
+  Cycle Test
+    √ Set values to input elements (2 ms)
+    √ Add Book with input entries to Library and clear text from inputs (2 ms)
+  Cycle Test #2
+    √ 1) Set values to input elements
+    √ 1) Add Book with input entries to Library and clear text from inputs
+    √ 1) Write to DOM (22 ms)
+    √ 2) Set values to input elements (1 ms)
+    √ 2) Add Book with input entries to Library and clear text from inputs
+    √ 2) Write to DOM (11 ms)
+  Cycle Test #3
+    √ 1) Delete Book and overwrite changes to DOM accordingly (9 ms)
+    √ 2) Set values to input elements (2 ms)
+    √ 2) Add Book with input entries to Library and clear text from inputs
+    √ 2) Write to DOM (10 ms)
+    √ 3) Update Book and write changes to DOM (8 ms)
+    √ 4) Delete books and update (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       14 passed, 14 total
+Snapshots:   0 total
+Time:        1.62 s, estimated 2 s
+Ran all test suites matching /.\\test\\main.test.js/i.

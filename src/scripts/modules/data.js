@@ -1,11 +1,12 @@
 import { getVal } from "./functions";
-export function get_data_card_nodes(){ // retrieve input nodes from submit card
-    const titleNode=document.getElementById('book-title');
-    const authorNode=document.getElementById('book-author');
-    const pagesNode=document.getElementById('book-pages');
-    const selectorNode=document.getElementById('book-status');
+export function get_data_card_nodes(id_array){ // retrieve input nodes from submit card
+    let nodes=[]
+    id_array.forEach((id)=>{
+      let node=document.getElementById(id);
+      nodes.push(node)
+    })
     
-    return [titleNode,authorNode,pagesNode,selectorNode]
+    return nodes//[titleNode,authorNode,pagesNode,selectorNode]
   }
 
 export function set_data_card_nodes(nodes,values){ //set values to input nodes of submit card (display to DOM)

@@ -1,0 +1,19 @@
+
+> library@1.0.0 compareBook-test
+> mocha ./test/compare.test.js
+
+
+
+  Compare if given entries are the same with the attributes of the Book #1
+    ✔ Input title (It) matches with Book entry(It)
+    ✔ Input author (Stephen King) matches with Book entry(Stephen King)
+    ✔ Input pages (500) matches with Book entry(500)
+
+  Compare if given entries are the same with the attributes of the Book #2
+    ✔ Input title (I) do not match with Book entry(It)
+    ✔ Input author (Steph King) do not  match with Book entry (Steph King)
+    ✔ Input pages (499) do not match with Book entry (500)
+
+
+  6 passing (10ms)
+

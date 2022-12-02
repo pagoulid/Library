@@ -15,9 +15,7 @@ export function getVal(str){
     return str
   }
 export function clearText(Nodes){
-    //Nodes.splice(3,1);
     Nodes.forEach(node => {
       node.value=''
     });
-    //document.getElementById('book-status').selectedIndex=0
   }

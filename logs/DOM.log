@@ -1,0 +1,15 @@
+> library@1.0.0 DOM-test
+> jest ./test/DOM.test.js
+
+ PASS  test/DOM.test.js
+  √ Toggle list of classNames#1  (4 ms)
+  √ Toggle list of classNames#2  (1 ms)
+  √ Replace classNames (1 ms)
+  √ set values to input elements and reset them afterward (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.524 s, estimated 2 s
+Ran all test suites matching /.\\test\\DOM.test.js/i.
+

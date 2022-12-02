@@ -1,0 +1,14 @@
+
+> library@1.0.0 libops-test
+> mocha ./test/libops.test.js
+
+
+
+  Testing Library functionality
+    ✔ Add Books to Library
+    ✔ Delete Book from Library
+    ✔ Update Book from Library
+
+
+  3 passing (4ms)
+

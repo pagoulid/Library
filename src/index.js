@@ -37,7 +37,7 @@ const submit = document.querySelector('.submit')
 /*DOM FUNCTIONS*/ 
 function addBook(){
   
-  const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode] -> get input data
+  const Nodes= get_data_card_nodes(['book-title','book-author','book-pages','book-status']) //[titleNode,authorNode,pagesNode] -> get input data
   const title=Nodes[0].value;
   const author=Nodes[1].value;
   const pages= Nodes[2].value;
@@ -71,9 +71,9 @@ function addBook(){
   }
  
 function deleteBook(id){
-  myLibrary.deleteBookFromLibrary(id,count);
+  myLibrary.deleteBookFromLibrary(id);
   count=count-1
-  myLibrary.reArrangeBooks(count)
+  myLibrary.reArrangeBooks()
   console.log('Library after deletion:',myLibrary.books)
   myLibrary.displayToDOM(container);
   myLibrary.addEntriesEventListener(BookEventCase);
@@ -81,7 +81,7 @@ function deleteBook(id){
 
 function updateBook(){
 
-  const Nodes= get_data_card_nodes() //[titleNode,authorNode,pagesNode]-> get input data
+  const Nodes= get_data_card_nodes(['book-title','book-author','book-pages','book-status']) //[titleNode,authorNode,pagesNode]-> get input data
   const title=Nodes[0].value.trim();
   const author=Nodes[1].value.trim();
   const pages= Nodes[2].value.trim();
@@ -98,7 +98,7 @@ function updateBook(){
 
       replace(cardNode,{primary:'visible-data-card',replacement:'hidden-data-card'})
 
-      myLibrary.updateBookFromLibrary(updateTarget-1,title,author,pages,status)
+      myLibrary.updateBookFromLibrary(updateTarget,title,author,pages,status)
       console.log('Library after update:',myLibrary.books) 
       myLibrary.displayToDOM(container);
       myLibrary.addEntriesEventListener(BookEventCase);
@@ -147,7 +147,7 @@ function show_data_card(msg,target){ // need target for to get book id for updat
   const updateDupCondition= !(prevUpdateCondition && updateCondition); // avoid duplicates clicks
 
   if(closeCondition){
-    const Nodes=get_data_card_nodes() 
+    const Nodes=get_data_card_nodes(['book-title','book-author','book-pages','book-status']) 
     reset(Nodes)
   }
   if(!(visibleCondition)){
@@ -162,7 +162,7 @@ function show_data_card(msg,target){ // need target for to get book id for updat
       }
       if(updateCondition){
           const entryContent=get_entry_data(target)//[entryTitle,entryAuthor,entryPages]
-          const Nodes = get_data_card_nodes()
+          const Nodes = get_data_card_nodes(['book-title','book-author','book-pages','book-status'])
 
           Nodes.splice(3,1)
           let statusValue=entryContent[3].trim(); // get status from of book entry to change status visibility on submit card
